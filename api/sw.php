@@ -2,19 +2,20 @@
 include_once "db.php";
 
 // dd($_POST);
-$poster1 = $Poster->find($_POST['ids'][0]);
-$poster2 = $Poster->find($_POST['ids'][1]);
-dd($poster1);
-dd($poster2);
+$db=${ucfirst($_GET['table'])};
+$row1 = $db->find($_POST['ids'][0]);
+$row2 = $db->find($_POST['ids'][1]);
+dd($row1);
+dd($row2);
 
 
-$tmp = $poster1;
-$poster1['rank'] = $poster2['rank'];
-$poster2['rank'] = $tmp['rank'];
+$tmp = $row1;
+$row1['rank'] = $row2['rank'];
+$row2['rank'] = $tmp['rank'];
 
 
-$Poster->save($poster1);
-$Poster->save($poster2);
+$db->save($row1);
+$db->save($row2);
 
 
 

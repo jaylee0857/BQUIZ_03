@@ -44,6 +44,11 @@
                     foreach ($rows as $key=> $row) :
                         $prev_id = ($key > 0) ? $rows[$key - 1]['id'] : $row['id'];
                         $next_id = ($key < count($rows) - 1) ? $rows[$key + 1]['id'] : $row['id'];
+
+
+                        //原本寫錯的
+                        // $prev_id=($key>0)? $row[$key-1]:$row['id'];
+                        // $next_id=(count($rows)-1>$key)?$row[$key+1]:$row['id'];
                 ?>
                 <tr>
                     <td class="ct">
@@ -115,7 +120,7 @@
         let ids = $(this).data("sw").split("-")
         console.log(ids);
         
-        $.post("./api/sw.php",{ids},(res)=>{
+        $.post("./api/sw.php?table=Poster",{ids},(res)=>{
             location.reload();
             console.log(res);
             
