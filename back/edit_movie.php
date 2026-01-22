@@ -66,7 +66,7 @@
                 </div>
                 <div>
                      <label for="">預告電影:</label>
-                    <input type="file" name="pre_movie">
+                    <input type="file" name="pre">
                 </div>
                 <div>
                      <label for="">電影海報:</label>
