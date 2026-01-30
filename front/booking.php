@@ -51,6 +51,14 @@
         5 => ["start" => "22:00", "text" => "22:00 ~ 24:00"],
         ];
     $time = $ss[$_GET['session']]['text'];
+
+    $rows = $Orders->all(['movie'=>$data['name'],'date'=> $_GET['date'], 'session'=>$time]);
+    $allSeats = [];
+
+    foreach ($rows as $row) {
+        $allSeats = array_merge($allSeats, explode(',', $row['seats']));
+    }
+    // dd($sql);
 ?>
 <!-- 先把座位背景拿出來 -->
 <div id="box">
@@ -59,8 +67,11 @@
             for ($i=0; $i <20 ; $i++) { 
                 $f = (floor($i/5)+1);
                 $num = ($i % 5)+1;
-                echo "<div class='seat null'>{$f}排{$num}號";
-                echo "<input type='checkbox' name='' value='$i' class='check_seat'>";
+                $is_book = in_array($i,$allSeats) ? 'booked':'null';
+                echo "<div class='seat $is_book'>{$f}排{$num}號";
+                if (!in_array($i,$allSeats)) {
+                    echo "<input type='checkbox' name='' value='$i' class='check_seat'>";
+                }
                 echo "</div>";
             }
         ?>
