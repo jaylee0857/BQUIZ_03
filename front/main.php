@@ -226,7 +226,7 @@
         if (next < 0) next = 0;                               // 不能小於 0
         if (next > max) next = max;                           // 不能超過最右邊界
 
-        $('.box').stop(true).animate({ scrollLeft: next }, 200); // 動畫捲動到 next
+        $('.box').animate({ scrollLeft: next }, 200); // 動畫捲動到 next
     });
 
 </script>
