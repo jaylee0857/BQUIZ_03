@@ -3,6 +3,7 @@ include_once "db.php";
 
 
 $movie_id = $_GET['movie_id'];          // 電影ID（這裡暫時沒用到，但先留著）
+$movie = $Movie->find($movie_id)['name'];
 $selDate  = $_GET['date'];         // 使用者選的日期（沒選就用今天）
 
 $today = date("Y-m-d");                              // 今天日期字串，例如 2026-01-23
@@ -22,7 +23,8 @@ foreach ($ss as $i => $s) {                          // 逐一處理每個場次
     $startTs = strtotime($today . " " . $s["start"]); // 把「日期+開始時間」轉成時間戳
     if ($nowTs >= $startTs) continue;                // 如果現在 >= 開始時間 → 這場已開始，不顯示
   }
-
-  echo "<option value='{$i}'>{$s['text']}</option>"; // 印出下拉選單選項
+  $sql = $Orders->sum('qt',['movie'=>$movie,'date'=> $_GET['date'], 'session'=>$s['text']]);
+  $qt = 20 - $sql;
+  echo "<option value='{$i}'>{$s['text']} 剩餘座位 $qt</option>"; // 印出下拉選單選項
 }
 ?>

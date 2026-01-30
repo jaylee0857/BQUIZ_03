@@ -166,32 +166,32 @@
     $(".list").eq(now).show();      
 
     function list_trasitin(target) {
-    const $lists = $(".list");
-    const $cur = $lists.eq(now);
+        const $lists = $(".list");
+        const $cur = $lists.eq(now);
 
-    const next = (target !== undefined) ? target : (now + 1) % $lists.length;
-    if (next === now) return;
+        const next = (target !== undefined) ? target : (now + 1) % $lists.length;
+        if (next === now) return;
 
-    const $next = $lists.eq(next);
-    const ani = $next.data("ani");
+        const $next = $lists.eq(next);
+        const ani = $next.data("ani");
 
-    $lists.hide();
+        $lists.hide();
 
-    if (ani == 1) {
-        $cur.fadeOut(t, function () {
-        $next.fadeIn(t);
-        });
-    } else if (ani == 2) {
-        $cur.slideUp(t, function () {
-        $next.slideDown(t);
-        });
-    } else {
-        $cur.hide(t, function () {
-        $next.show(t);
-        });
-    }
+        if (ani == 1) {
+            $cur.fadeOut(t, function () {
+            $next.fadeIn(t);
+            });
+        } else if (ani == 2) {
+            $cur.slideUp(t, function () {
+            $next.slideDown(t);
+            });
+        } else {
+            $cur.hide(t, function () {
+            $next.show(t);
+            });
+        }
 
-    now = next;
+        now = next;
     }
 
     // ✅ 每 3 秒自動換一張
@@ -200,13 +200,13 @@
     }, 3000);
 
     $(".btn").click(function () {
-    clearInterval(slider);
-    const idx = $(this).index();
-    list_trasitin(idx);
+        clearInterval(slider);
+        const idx = $(this).index();
+        list_trasitin(idx);
 
-    slider = setInterval(() => {
-    list_trasitin();
-    }, 3000);
+        slider = setInterval(() => {
+        list_trasitin();
+        }, 3000);
     });
 
     $('.l, .r').click(function () {                         // 點左右按鈕

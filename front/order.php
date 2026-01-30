@@ -78,11 +78,11 @@
                 $('#res').hide();
             })
         
-            $('#res_start').click(function(){
-                $('#booking').hide();
-                $('#order').hide();
-                $('#res').show();
-            })
+            // $('#res_start').click(function(){
+            //     $('#booking').hide();
+            //     $('#order').hide();
+            //     $('#res').show();
+            // })
 
         })
     })

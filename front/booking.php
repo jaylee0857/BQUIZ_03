@@ -21,7 +21,7 @@
         position: relative;
     }
 
-    .check{
+    .check_seat{
         position: absolute;
         bottom: 5px;
         right: 5px;
@@ -60,7 +60,7 @@
                 $f = (floor($i/5)+1);
                 $num = ($i % 5)+1;
                 echo "<div class='seat null'>{$f}排{$num}號";
-                echo "<input type='checkbox' name='' value='' class='check'>";
+                echo "<input type='checkbox' name='' value='$i' class='check_seat'>";
                 echo "</div>";
             }
         ?>
@@ -70,9 +70,55 @@
 <div class="">
     <p>你選則的電影是: <?=$data['name']?></p>
     <p>你選擇的時刻是:  <?=$_GET['date']?> <?=$time?></p>
-    <p>您已經勾選了 <span>10</span>張票, 最多可以購買四張票</p>
+    <p>您已經勾選了 <span id="tickets">0</span>張票, 最多可以購買四張票</p>
     <div class="ct">
         <input id="booking_start" type="button" value="上一步">
         <input id="res_start" type="button" value="訂購">
     </div>
 </div>
+
+<script>
+
+    let seats = [];
+
+    $(".check_seat").click(function(){
+        let seat =$(this).val();
+        console.log(seats.length == 4);
+        if ($(this).prop('checked')) {
+            // +入陣列
+
+            if (seats.length < 4) {
+                seats.push(seat)
+            }else {
+                alert("最多可以購買四張票")
+                $(this).prop('checked',false)
+            }
+        }else {
+            // 移出陣列
+            seats.splice(seats.indexOf(seat),1)
+        }
+        $("#tickets").text(seats.length)
+        console.log(seats);
+
+    })
+
+    // $("#booking_start").click(function(){
+
+    // })
+    $('#res_start').click(function(){
+        let movie = <?=json_encode($data['name'])?>;
+        let date = <?=json_encode($_GET['date'])?>;
+        let session = <?=json_encode($time);?>;
+        console.log("訂了");
+        
+        $.post("./api/order.php",{seats,movie,date,session},function(res){
+            console.log(res);
+            $('#res').html(res);
+            $('#booking').hide();
+            $('#order').hide();
+            $('#res').show();
+        })
+
+    })
+
+</script>

@@ -156,6 +156,8 @@ class DB{
 
 $Poster = new DB('poster');
 $Movie = new DB('movie');
+$Orders = new DB('orders');
+
 
 
 ?>
