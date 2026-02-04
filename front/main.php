@@ -209,24 +209,51 @@
         }, 3000);
     });
 
-    $('.l, .r').click(function () {                         // 點左右按鈕
-        const box = $('.box')[0];                             // 取得 box 的 DOM 元素
+    // $('.l, .r').click(function () {                         // 點左右按鈕
+    //     const box = $('.box')[0];                             // 取得 box 的 DOM 元素
 
-        const step = $('.btn').first().outerWidth(true);     // 一次滑動距離＝視窗寬度(一頁)
-        console.log(step);
+    //     const step = $('.btn').first().outerWidth(true);     // 一次滑動距離＝視窗寬度(一頁)
+    //     console.log(step);
         
-        const max  = box.scrollWidth - box.clientWidth;       // 最右邊界＝內容寬 - 視窗寬
+    //     const max  = box.scrollWidth - box.clientWidth;       // 最右邊界＝內容寬 - 視窗寬
         
-        let next = box.scrollLeft;                            // 目前捲動位置
-        console.log(next);
+    //     let next = box.scrollLeft;                            // 目前捲動位置
+    //     console.log(next);
         
-        if ($(this).hasClass('r')) next += step;              // 點右：往右捲
-        else next -= step;                                    // 點左：往左捲
+    //     if ($(this).hasClass('r')) next += step;              // 點右：往右捲
+    //     else next -= step;                                    // 點左：往左捲
 
-        if (next < 0) next = 0;                               // 不能小於 0
-        if (next > max) next = max;                           // 不能超過最右邊界
+    //     if (next < 0) next = 0;                               // 不能小於 0
+    //     if (next > max) next = max;                           // 不能超過最右邊界
 
-        $('.box').animate({ scrollLeft: next }, 200); // 動畫捲動到 next
+    //     $('.box').animate({ scrollLeft: next }, 200); // 動畫捲動到 next
+    // });
+
+    // $('.l, .r').on('click', function () {
+    //     const box = document.querySelector('.box'); // 取得捲動容器
+    //     const card = document.querySelector('.btn'); // 取得一張卡片
+    //     const step = card ? card.offsetWidth : 0; // 一次滑動距離＝卡片寬
+    //     // const gap = 0; // 如果你卡片有 margin/gap，可以改成正確數值
+    //     const dir = $(this).hasClass('r') ? 1 : -1; // 右=1 左=-1
+    //     console.log(step);
+        
+    //     box.scrollBy(
+    //         { left: dir * (step + gap), behavior: 'smooth' }
+    //     ); // 平滑捲動
+    // });
+
+    $(".r, .l").click(function () {                          // 綁左右按鈕點擊事件
+        const box = document.querySelector(".box");            // 取得捲動容器
+        const card = box.querySelector(".btn");                // 從 box 裡找第一張卡（避免抓錯）
+        const step = card ? card.offsetWidth : 0;              // 一次滑動距離＝卡片寬（不含 margin）
+        const dir = $(this).hasClass("r") ? 1 : -1;            // 右=1 左=-1
+        console.log(dir * step);
+        
+        box.scrollBy({                                         // 捲動
+            left: dir * step,                                    // 往左/右移動一張卡的距離
+            behavior: "smooth"                                   // 平滑動畫
+        });
     });
+
 
 </script>

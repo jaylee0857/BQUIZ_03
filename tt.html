@@ -79,3 +79,26 @@
     <thead></thead>
     <tbody></tbody>
 </table>
+
+<script>
+
+$(".r, .l").click(function () {                          // 綁左右按鈕點擊事件
+  const box = document.querySelector(".box");            // 取得捲動容器
+  const card = box.querySelector(".btn");                // 從 box 裡找第一張卡（避免抓錯）
+  const step = card ? card.offsetWidth : 0;              // 一次滑動距離＝卡片寬（不含 margin）
+  const dir = $(this).hasClass("r") ? 1 : -1;            // 右=1 左=-1
+
+  box.scrollBy({                                         // 捲動
+    left: dir * step,                                    // 往左/右移動一張卡的距離
+    behavior: "smooth"                                   // 平滑動畫
+  });
+});
+
+
+</script>
+
+<style>
+    .s{
+        scroll-behavior: smooth;
+    }
+</style>
