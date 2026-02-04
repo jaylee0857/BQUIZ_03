@@ -43,20 +43,13 @@
     include_once "../api/db.php";
     
     $data= $Movie->find($_GET['movie_id']);
-    $ss = [
-        1 => ["start" => "14:00", "text" => "14:00 ~ 16:00"],
-        2 => ["start" => "16:00", "text" => "16:00 ~ 18:00"],
-        3 => ["start" => "18:00", "text" => "18:00 ~ 20:00"],
-        4 => ["start" => "20:00", "text" => "20:00 ~ 22:00"],
-        5 => ["start" => "22:00", "text" => "22:00 ~ 24:00"],
-        ];
-    $time = $ss[$_GET['session']]['text'];
+    // $time = $_GET['session'];
 
-    $rows = $Orders->all(['movie'=>$data['name'],'date'=> $_GET['date'], 'session'=>$time]);
+    $rows = $Orders->all(['movie'=>$data['name'],'date'=> $_GET['date'], 'session'=>$_GET['session']]);
     $allSeats = [];
 
     foreach ($rows as $row) {
-        $allSeats = array_merge($allSeats, explode(',', $row['seats']));
+        $allSeats = array_merge($allSeats, json_decode($row['seats'],true));
     }
     // dd($sql);
 ?>
@@ -117,9 +110,9 @@
 
     // })
     $('#res_start').click(function(){
-        let movie = <?=json_encode($data['name'])?>;
-        let date = <?=json_encode($_GET['date'])?>;
-        let session = <?=json_encode($time);?>;
+        let movie = "<?=($data['name'])?>";
+        let date = "<?=($_GET['date'])?>";
+        let session = "<?=($_GET['session']);?>";
         console.log("訂了");
         
         $.post("./api/order.php",{seats,movie,date,session},function(res){

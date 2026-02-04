@@ -64,9 +64,9 @@
         $('#order').hide();
         $('#res').hide();
 
-        let movie_id = $('#movie').val();
-        let date = $('#date').val();
-        let session = $('#session').val();
+        let movie_id = $('#movie').val(); //id
+        let date = $('#date').val(); // Y-m-d
+        let session = $('#session').val(); // 14:00 ~ 16:00
 
 
         $.get("front/booking.php",{movie_id,date,session},function(booking){

@@ -57,7 +57,8 @@
         <td><?=$row['qt']?></td>
         <td>
         <?php
-            $seats = explode(',', $row['seats']);
+            // $seats = explode(',', $row['seats']);
+            $seats = json_decode($row['seats'],true);
             foreach ($seats as $s) {
             $s = (int)$s;
             echo (floor($s/5) + 1) . "排" . (($s % 5) + 1) . "號<br>";

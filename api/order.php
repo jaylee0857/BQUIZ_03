@@ -19,9 +19,10 @@ include_once "db.php";
 sort($_POST['seats']);
 $_POST['qt'] = count($_POST['seats']);
 $_POST['no']   = date("Ymd") . sprintf("%04d", ((int)$Orders->max('id')) + 1);
-$_POST['seats'] = implode(',', $_POST['seats']);
-// dd($_POST);
+// $_POST['seats'] = implode(',', $_POST['seats']);
+$_POST['seats'] = json_encode($_POST['seats']);
 
+// dd($_POST);
 $Orders->save($_POST);
 ?>
 
@@ -54,7 +55,9 @@ $Orders->save($_POST);
     <tr>
         <td>
         <?php
-            $seats = explode(',', $_POST['seats']);
+            // $seats = explode(',', $_POST['seats']);
+            $seats = json_decode($_POST['seats'],true);
+
             foreach ($seats as $s) {
             $s = (int)$s;
             echo (floor($s/5) + 1) . "排" . (($s % 5) + 1) . "號<br>";
