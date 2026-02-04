@@ -1,11 +1,11 @@
 <?php
   include_once "./api/db.php";
   if (isset($_POST['acc'])) {
-    dd($_POST);
+    // dd($_POST);
     if ($_POST['acc'] == 'admin' && $_POST['pw'] == '1234') {
       $_SESSION['login'] = 1;
     }else{
-      echo "<script>arert('帳號或是密碼錯誤')</script>";
+      echo "<script>alert('帳號或是密碼錯誤')</script>";
     }
   }
 ?>

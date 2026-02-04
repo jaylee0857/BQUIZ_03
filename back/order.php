@@ -1,3 +1,13 @@
+<style>
+  table { 
+    width: 100%;
+    border-collapse: collapse; /* 讓線條不要變成雙線 */
+  }
+  td {
+    border-bottom: 1px solid #ccc;   /* 每格的邊框 */
+  }
+</style>
+
 <div class="rb tab">
     <h2 class="ct">訂單清單</h2>
     <div style="display:flex;">
@@ -34,6 +44,7 @@
         <td width="15%">訂購位置</td>
         <td>操作</td>
     </tr>
+    
     <?php
         $rows = $Orders->all(" ORDER BY `no` desc");
         foreach ($rows as $index => $row) :

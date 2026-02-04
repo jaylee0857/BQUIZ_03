@@ -91,7 +91,7 @@
 <script>
 
     let seats = [];
-
+    //這段要多看幾次
     $(".check_seat").click(function(){
         let seat =$(this).val();
         console.log(seats.length == 4);

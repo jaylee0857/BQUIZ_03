@@ -3,7 +3,7 @@
         max-height:300px; 
         overflow-y:auto; 
     }
-    thead tr{
+    thead{
         position: sticky;
         top: 0;
         background: black;

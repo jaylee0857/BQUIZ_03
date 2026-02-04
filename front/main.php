@@ -68,7 +68,7 @@
     <div class="rb tab" style="width:95%;">
         <div class="lists">
                 <?php
-                    $rows = $Poster->all(['sh'=>1]);
+                    $rows = $Poster->all(['sh'=>1], " ORDER BY `rank`");
                     foreach ($rows as $row) :
                 ?>
             <div class="list" data-ani="<?=$row['ani']?>">
