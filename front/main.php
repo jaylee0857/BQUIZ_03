@@ -175,7 +175,7 @@
         const $next = $lists.eq(next);
         const ani = $next.data("ani");
 
-        $lists.hide();
+        // $lists.hide();
 
         if (ani == 1) {
             $cur.fadeOut(t, function () {
