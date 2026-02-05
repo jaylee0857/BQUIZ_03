@@ -50,11 +50,7 @@
 </div>
 
 <div id="res" style="display:none">
-    res
-    <div class="ct">
-            <input id="booking_start" type="button" value="">
-            <input type="reset" value="重製">
-    </div>
+
 </div>
 
 <script>

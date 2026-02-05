@@ -1,6 +1,7 @@
 ﻿
 <?php
   $row = $Movie->find($_GET['id']);
+  $leve_table=["","普遍級","輔導級","保護級","限制級"];
 ?>
   <div class="tab rb" style="width:87%;">
     <div style="background:#FFF; width:100%; color:#333; text-align:left">
@@ -11,7 +12,7 @@
           <input type="button" value="線上訂票" onclick="location.href='?do=order&id<?=$row['id']?>'"
             style="margin-left:50px; padding:2px 4px" class="b2_btu">
         </p>
-        <p style="margin:3px">影片分級 ： <img src="Profile page_files/03C04.png" style="display:inline-block;">限制級 </p>
+        <p style="margin:3px">影片分級 ： <img src="./icon/<?=$row['level']?>.png" style="display:inline-block;"><?=$leve_table[$row['level']]?></p>
         <p style="margin:3px">影片片長 ：  <?=floor($row['long_time']/60)?>:<?=($row['long_time']%60)?>
         <p style="margin:3px">上映日期 <?=$row['date']?></p>
         <p style="margin:3px">發行商 ： <?=$row['pub']?></p>

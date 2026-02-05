@@ -73,7 +73,7 @@
 <!-- 320/340 -->
 <div class="">
     <p>你選則的電影是: <?=$data['name']?></p>
-    <p>你選擇的時刻是:  <?=$_GET['date']?> <?=$time?></p>
+    <p>你選擇的時刻是:  <?=$_GET['date']?> <?=$_GET['session']?></p>
     <p>您已經勾選了 <span id="tickets">0</span>張票, 最多可以購買四張票</p>
     <div class="ct">
         <input id="booking_start" type="button" value="上一步">
@@ -82,29 +82,51 @@
 </div>
 
 <script>
+let seats = [];
 
-    let seats = [];
-    //這段要多看幾次
-    $(".check_seat").click(function(){
-        let seat =$(this).val();
-        console.log(seats.length == 4);
-        if ($(this).prop('checked')) {
-            // +入陣列
+$(".check_seat").click(function () {
+  const seat = $(this).val();
 
-            if (seats.length < 4) {
-                seats.push(seat)
-            }else {
-                alert("最多可以購買四張票")
-                $(this).prop('checked',false)
-            }
-        }else {
-            // 移出陣列
-            seats.splice(seats.indexOf(seat),1)
-        }
-        $("#tickets").text(seats.length)
-        console.log(seats);
+  // 情況1：勾選
+  if (this.checked) {
+    if (seats.length >= 4) {
+      alert("最多可以購買四張票");
+      this.checked = false;
+      return;
+    }
+    seats.push(seat);
+    $("#tickets").text(seats.length);
+    return;
+  }
 
-    })
+  // 情況2：取消勾選
+  seats.splice(seats.indexOf(seat), 1);
+  $("#tickets").text(seats.length);
+});
+
+
+    // let seats = [];
+    // //這段要多看幾次
+    // $(".check_seat").click(function(){
+    //     let seat =$(this).val();
+    //     console.log(seats.length == 4);
+    //     if ($(this).prop('checked')) {
+    //         // +入陣列
+
+    //         if (seats.length < 4) {
+    //             seats.push(seat)
+    //         }else {
+    //             alert("最多可以購買四張票")
+    //             $(this).prop('checked',false)
+    //         }
+    //     }else {
+    //         // 移出陣列
+    //         seats.splice(seats.indexOf(seat),1)
+    //     }
+    //     $("#tickets").text(seats.length)
+    //     console.log(seats);
+
+    // })
 
     // $("#booking_start").click(function(){
 

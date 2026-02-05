@@ -28,15 +28,11 @@
         }
         .controls{
             display: flex;
-           align-items: center;
-            
+            align-items: center;
             width: 100%;
-            overflow: hidden;
         }
-
         
         .box{
-            position: relative;
             overflow: hidden;
         }
         .btns{
@@ -115,7 +111,8 @@
             $pages=ceil($total/$div);
             $now=$_GET['p']??1;
             $start = ($now-1)*$div;
-            $rows=$Movie->all(['sh'=>1]," && `date` between '$ondate' AND '$today' order by `rank` limit $start,$div");
+            // $rows=$Movie->all(['sh'=>1]," && `date` between '$ondate' AND '$today' order by `rank` limit $start,$div");
+            $rows = $Movie->all(['sh'=>1]," && `date` between '$ondate' AND '$today' order by `rank` limit $start, $div");
             foreach ($rows as $row) :
         ?>
         <div class="movie_item">
@@ -165,33 +162,58 @@
     $(".list").hide();                  
     $(".list").eq(now).show();      
 
-    function list_trasitin(target) {
-        const $lists = $(".list");
-        const $cur = $lists.eq(now);
+    // function list_trasitin(target) {
+    //     const $lists = $(".list");
+    //     const $cur = $lists.eq(now);
 
-        const next = (target !== undefined) ? target : (now + 1) % $lists.length;
-        if (next === now) return;
+    //     const next = (target !== undefined) ? target : (now + 1) % $lists.length;
+    //     if (next === now) return;
 
-        const $next = $lists.eq(next);
-        const ani = $next.data("ani");
+    //     const $next = $lists.eq(next);
+    //     const ani = $next.data("ani");
 
-        // $lists.hide();
+    //     // $lists.hide();
 
-        if (ani == 1) {
-            $cur.fadeOut(t, function () {
-            $next.fadeIn(t);
-            });
-        } else if (ani == 2) {
-            $cur.slideUp(t, function () {
-            $next.slideDown(t);
-            });
-        } else {
-            $cur.hide(t, function () {
-            $next.show(t);
-            });
-        }
+    //     if (ani == 1) {
+    //         $cur.fadeOut(t, function () {
+    //         $next.fadeIn(t);
+    //         });
+    //     } else if (ani == 2) {
+    //         $cur.slideUp(t, function () {
+    //         $next.slideDown(t);
+    //         });
+    //     } else {
+    //         $cur.hide(t, function () {
+    //         $next.show(t);
+    //         });
+    //     }
 
-        now = next;
+    //     now = next;
+    // }
+
+    function list_trasitin(target){
+            const $lists = $('.list');
+            const $cur = $lists.eq(now);
+            const next = (target != undefined) ? target : (now + 1 ) % $lists.length;
+            if (target == now) return
+
+            const $next = $lists.eq(next);
+            const ani = $next.data("ani")
+
+            if (ani == 1) {
+                $cur.fadeOut(t,function(){
+                    $next.fadeIn(t)
+                })
+            }else if (ani == 2) {
+                $cur.slideUp(t,function(){
+                    $next.slideDown(t)
+                })
+            }else{
+                $cur.hide(t,function(){
+                    $next.show(t)
+                })
+            }
+            now = next
     }
 
     // ✅ 每 3 秒自動換一張
