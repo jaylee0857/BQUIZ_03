@@ -112,7 +112,7 @@
             $now=$_GET['p']??1;
             $start = ($now-1)*$div;
             // $rows=$Movie->all(['sh'=>1]," && `date` between '$ondate' AND '$today' order by `rank` limit $start,$div");
-            $rows = $Movie->all(['sh'=>1]," && `date` between '$ondate' AND '$today' order by `rank` limit $start, $div");
+            $rows = $Movie->all(['sh'=>1]," AND `date` between '$ondate' AND '$today' order by `rank` limit $start, $div");
             foreach ($rows as $row) :
         ?>
         <div class="movie_item">
@@ -266,7 +266,7 @@
 
     $(".r, .l").click(function () {                          // 綁左右按鈕點擊事件
         const box = document.querySelector(".box");            // 取得捲動容器
-        const card = box.querySelector(".btn");                // 從 box 裡找第一張卡（避免抓錯）
+        const card = document.querySelector(".btn");                // 從 box 裡找第一張卡（避免抓錯）
         const step = card ? card.offsetWidth : 0;              // 一次滑動距離＝卡片寬（不含 margin）
         const dir = $(this).hasClass("r") ? 1 : -1;            // 右=1 左=-1
         console.log(dir * step);
