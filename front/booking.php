@@ -100,7 +100,8 @@ $(".check_seat").click(function () {
   }
 
   // 情況2：取消勾選
-  seats.splice(seats.indexOf(seat), 1);
+//   seats.splice(seats.indexOf(seat), 1);
+  seats.filter((s) => s !== seat)
   $("#tickets").text(seats.length);
 });
 
