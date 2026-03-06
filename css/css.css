@@ -103,7 +103,8 @@ input:focus
 #mm
 {
 	padding:10px;
-	height:400px;
+	height:520px;
+	overflow-y: scroll;
 }
 #bo
 {
@@ -186,3 +187,5 @@ input:focus
 {
 	cursor:default;
 }
+
+
