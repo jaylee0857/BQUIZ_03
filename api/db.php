@@ -13,7 +13,7 @@ function to($url){
 }
 
 class DB{
-    private $dns="mysql:host=localhost;dbname=db_03_3;charset=utf8";
+    private $dns="mysql:host=localhost;dbname=db03_3;charset=utf8";
     private $table;
     private $pdo;
 
@@ -131,10 +131,18 @@ class DB{
             $vals = join("','",$ary);
             $sql = "INSERT INTO `{$this->table}` (`$cols`) VALUES ('$vals')";
         }
+        // dd($sql);
         return $this->pdo->exec($sql);
     }
 }
 
+
+$Poster = new DB("poster");
+$Movie = new DB("movie");
+$Orders = new DB("orders");
+
+
+$_SESSION['ani'] = $_SESSION['ani'] ??1;
 
 ?>
 

@@ -9,6 +9,9 @@ select,select option
 {
 	padding:5px;
 }
+table{
+	margin: 0 auto;
+}
 input[type='text'],input[type='file'],input[type='password'],textarea,.button
 {
 	width:200px;
@@ -102,7 +105,8 @@ input:focus
 #mm
 {
 	padding:10px;
-	min-height:520px;
+	height:520px;
+	overflow-y: scroll;
 }
 #bo
 {
