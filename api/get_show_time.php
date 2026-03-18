@@ -6,7 +6,7 @@
     $movie_date = $_POST['movie_date'];
 
 
-    if ($movie_date == "2026-03-17") {
+    if ($movie_date == "2026-03-18") {
         $t =[
             "16:00~18:00",
             "18:00~20:00",
